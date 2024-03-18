@@ -14,8 +14,12 @@ function exibirTextoNaTela(tag, texto) {
     campo.innerHTML = texto;
 }
 
-exibirTextoNaTela("h1", "Jogo da Advinhação");
-exibirTextoNaTela("p", "Escolha um número entre 1 e 10");
+function exibirMensagemInicial() {
+    exibirTextoNaTela("h1", "Jogo da Advinhação");
+    exibirTextoNaTela("p", "Escolha um número entre 1 e 10");
+}
+
+exibirMensagemInicial();
 
 function verificarChute() {
     let chute = document.querySelector("input").value;
@@ -26,6 +30,7 @@ function verificarChute() {
         let palavraTentativa = tentativas > 1 ? "tentativas" : "tentativa";
         let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}.`;
         exibirTextoNaTela("p", mensagemTentativas);
+        document.getElementById("reiniciar").removeAttribute("disabled");
     } else {
         exibirTextoNaTela("h1", "Errou!");
         if (chute > numeroSecreto) {
@@ -34,10 +39,24 @@ function verificarChute() {
             exibirTextoNaTela("p", "O número secreto é maior");
         }
         tentativas++;
+        limparCampo()
     }
     
 }
 
 function gerarNumeroAleatorio() {
     return parseInt(Math.random() * 10) + 1;
+}
+
+function limparCampo() {
+    chute = document.querySelector("input");
+    chute.value = "";
+}
+
+function reiniciarJogo () {
+    numeroSecreto = gerarNumeroAleatorio();
+    limparCampo();
+    tentativas = 1;
+    document.getElementById("reiniciar").setAttribute("disabled", "disabled");
+    exibirMensagemInicial();
 }
