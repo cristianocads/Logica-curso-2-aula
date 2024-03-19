@@ -46,6 +46,9 @@ function verificarChute() {
 }
 
 function gerarNumeroAleatorio() {
+    if (listaDeNumerosSorteados.length === 10) {
+        listaDeNumerosSorteados = [];
+    }
     let numeroEscolhido = parseInt(Math.random() * 10) + 1;
     if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
         return gerarNumeroAleatorio();
