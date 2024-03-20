@@ -16,7 +16,7 @@ function exibirTextoNaTela(tag, texto) {
 }
 
 function exibirMensagemInicial() {
-    exibirTextoNaTela("h1", "Jogo da Advinhação");
+    exibirTextoNaTela("h1", "Jogo da Adivinhação");
     exibirTextoNaTela("p", "Escolha um número entre 1 e 10");
 }
 
